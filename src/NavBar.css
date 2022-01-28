@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em;
+  color: #fff;
+  background-color: #1f1d1d;
+}
+
+.logo {
+  font-weight: 800;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1em;
+}
