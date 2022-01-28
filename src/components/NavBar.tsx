@@ -10,13 +10,13 @@ function NavBar() {
       <div className="menus">
         <ul className="menu">
           <li>
-            <a href="/">Top Rated Movies</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/"></a>
+            <Link to="/genre-list">Genre</Link>
           </li>
           <li>
-            <a href="/">Search</a>
+            <Link to="/">Search</Link>
           </li>
         </ul>
       </div>

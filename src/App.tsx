@@ -1,16 +1,14 @@
 import React from "react";
+import MovieRoutes from "./components/MovieRoutes";
 
-import MovieDetail from "./components/MovieDetail";
-import MovieCard from "./components/MovieCard";
-import Movies from "./components/Movies";
-import NavBar from "./NavBar";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
       <NavBar />
-      <Movies />
-    </div>
+      <MovieRoutes />
+    </React.Fragment>
   );
 }
 

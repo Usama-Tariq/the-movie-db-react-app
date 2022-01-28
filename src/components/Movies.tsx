@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getMoviesTopRated, getImage } from "../api-tmdb/api";
+import { getMoviesTopRated } from "../api-tmdb/api";
+import MovieCard from "./MovieCard";
 import "./Movies.css";
 
 function Movies() {
@@ -15,10 +16,7 @@ function Movies() {
     <React.Fragment>
       <div className="flex-container">
         {topRatedMovies.map((movie) => (
-          <div key={movie.id} className="item">
-            <img src={getImage(movie.poster_path)} />
-            <p>{movie.original_title}</p>
-          </div>
+          <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>
     </React.Fragment>

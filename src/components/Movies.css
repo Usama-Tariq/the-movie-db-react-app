@@ -28,3 +28,22 @@
   flex: 0 0 auto;
   width: 66.66666667%;
 }
+.title-link {
+  text-decoration: none;
+}
+ol,
+ul {
+  padding-left: 2rem;
+}
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-bottom: 0;
+}

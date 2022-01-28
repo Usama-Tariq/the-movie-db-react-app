@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { getMovieById, getImage } from "../api-tmdb/api";
+import { Link } from "react-router-dom";
+import { getImage } from "../api-tmdb/api";
+import Like from "./Like";
+import "./Movies.css";
 
 function MovieCard(props: any) {
-  const [movieDetail, setMovieDetail] = useState([]);
-
-  useEffect(() => {
-    const movie_id = 550;
-    getMovieById(movie_id).then((response) => {
-      console.log(response.data);
-      setMovieDetail(response.data);
-    });
-  }, []);
+  const { id, poster_path, original_title } = props.movieDetails;
 
   return (
-    <div key={props.id} className="item">
-      <img src={getImage(props.poster_path)} />
-      <p>{props.original_title}</p>
+    <div className="item">
+      <img src={getImage(poster_path)} alt={original_title} />
+      <Link to={`/movie-detail/${id}`} className="title-link">
+        {original_title}
+      </Link>
     </div>
   );
 }
