@@ -1,8 +1,5 @@
 import React from "react";
 
-// Input: Liked: boolean
-// Output: onClick Event
-
 const Like = (props: any) => {
   let classes = "fa fa-heart";
   if (!props.liked) classes += "-o";

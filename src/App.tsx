@@ -1,14 +1,14 @@
 import React from "react";
-import MovieRoutes from "./components/MovieRoutes";
 
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navbar/components/NavBar";
+import Routing from "./components/Routing";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <NavBar />
-      <MovieRoutes />
-    </React.Fragment>
+      <Routing />
+    </>
   );
 }
 

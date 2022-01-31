@@ -1,12 +1,12 @@
 import React from "react";
-import Genre from "./Genre";
-import Movies from "./Movies";
+import GenreList from "./movies/components/GenreList";
+import TopRatedMovies from "./movies/components/TopRatedMovies";
 
-function Home(props: any) {
+function Home() {
   return (
     <>
-      <Movies />
-      <Genre />
+      <TopRatedMovies />
+      <GenreList />
     </>
   );
 }

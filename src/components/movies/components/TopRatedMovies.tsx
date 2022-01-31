@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getMoviesTopRated } from "../api-tmdb/api";
-import MovieCard from "./MovieCard";
-import "./Movies.css";
 
-function Movies() {
+import { getMoviesTopRated } from "../../../api";
+import MovieCard from "./MovieCard";
+
+import "../styles/movies.css";
+
+function TopRatedMovies() {
   const [topRatedMovies, setTopRatedMovies] = useState<any[]>([]);
 
   useEffect(() => {
@@ -13,14 +15,14 @@ function Movies() {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <div className="flex-container">
         {topRatedMovies.map((movie) => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
-export default Movies;
+export default TopRatedMovies;

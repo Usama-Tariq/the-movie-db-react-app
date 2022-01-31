@@ -1,7 +1,7 @@
 import React from "react";
 
-function NoMatch(props: any) {
+function NotFound(props: any) {
   return <div>Page not found</div>;
 }
 
-export default NoMatch;
+export default NotFound;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./NavBar.css";
+import "../styles/navbar.css";
 
 function NavBar() {
   return (
@@ -16,7 +16,15 @@ function NavBar() {
             <Link to="/genre-list">Genre</Link>
           </li>
           <li>
-            <Link to="/">Search</Link>
+            <Link to="/search">Search</Link>
+          </li>
+          <li>
+            <input
+              type="text"
+              placeholder="Search Movie"
+              // value={search}
+              // onChange={(e) => setSearch(e.target.value)}
+            />
           </li>
         </ul>
       </div>

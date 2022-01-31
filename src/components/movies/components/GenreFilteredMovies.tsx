@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { getGenreById } from "../api-tmdb/api";
+import { getGenreById } from "../../../api";
 import MovieCard from "./MovieCard";
-import "./Movies.css";
+import "../styles/movies.css";
 
-function GenreFiltering(props: any) {
+function GenreFilteredMovies(props: any) {
   const { id, name } = props.genreDetails;
 
-  const [genreMoviesById, setGenreMoviesById] = useState<any[]>([]);
+  const [MoviesDetails, setMoviesDetails] = useState<any[]>([]);
 
   useEffect(() => {
     getGenreById(id).then((response) => {
-      setGenreMoviesById(response.data.results);
+      setMoviesDetails(response.data.results);
     });
-  }, []);
+  });
 
   return (
-    <React.Fragment>
+    <>
       <h4>{name}</h4>
       <div className="flex-container">
-        {genreMoviesById.map((movie) => (
+        {MoviesDetails.map((movie) => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
-export default GenreFiltering;
+export default GenreFilteredMovies;

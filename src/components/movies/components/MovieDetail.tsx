@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getMovieById, getImage } from "../api-tmdb/api";
-import "./Movies.css";
+
+import { getMovieDetails, getImage } from "../../../api";
+
+import "../styles/movies.css";
 
 interface movieDetails {
   poster_path: string;
@@ -37,14 +39,16 @@ function MovieDetail(props: any) {
 
   useEffect(() => {
     //@ts-ignore
-    const id: number = +movieId;
-    getMovieById(id).then((response) => {
-      setMovieDetail(response.data);
-    });
+    const id: number = parseInt(movieId);
+    getMovieDetails(id).then(
+      (response: { data: React.SetStateAction<movieDetails> }) => {
+        setMovieDetail(response.data);
+      }
+    );
   }, [movieId]);
 
   return (
-    <React.Fragment>
+    <>
       <div className="MovieDetail">
         <div className="flex-container">
           <div className="col-4">
@@ -97,7 +101,7 @@ function MovieDetail(props: any) {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
