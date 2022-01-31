@@ -45,7 +45,7 @@ function MovieDetail(props: any) {
         setMovieDetail(response.data);
       }
     );
-  }, [movieId]);
+  });
 
   return (
     <>

@@ -12,7 +12,7 @@ function GenreList() {
     getGenresList.then((response) => {
       setGenreList(response.data.genres);
     });
-  }, [genreList]);
+  }, []);
 
   return (
     <>

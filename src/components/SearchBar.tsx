@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-// import List from "./List";
+import React from "react";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
-function SearchBar(props: any) {
-  const [contacts, setContacts] = useState([]);
-  const [search, setSearch] = useState("");
+function SearchBar() {
+  const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      search: "",
+    },
+    onSubmit: (values) => {
+      navigate(`../search/${values.search}`);
+    },
+  });
 
-  useEffect(() => {
-    const API_URL = "https://my.api.mockaroo.com/phonebook.json?key=9ac1c5f0";
-    axios.get(API_URL).then((res) => {
-      const contacts = res.data;
-      setContacts(contacts);
-    });
-  }, []);
-
-  //   const filteredContacts =
-  //     search.length === 0
-  //       ? contacts
-  //       : contacts.filter((contact) =>
-  //           contact.full_name.toLowerCase().includes(search.toLowerCase())
-  //         );
+  // console.log("Formik Value", formik.values);
 
   return (
-    <div>
-      <h3>CONTACTS LIST</h3>
-      <input
-        type="text"
-        placeholder="Search name"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {/* <List contacts={filteredContacts} /> */}
-    </div>
+    <>
+      <div className="search-container">
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="search">Search Movies</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search Movies"
+            name="search"
+            onChange={formik.handleChange}
+            value={formik.values.search}
+          />
+          {/* <button type="submit" onClick={() => navigate("../search/${}")}>
+            Search
+          </button> */}
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </>
   );
-  //   return <div></div>;
 }
 
 export default SearchBar;

@@ -12,7 +12,7 @@ function GenreFilteredMovies(props: any) {
     getGenreById(id).then((response) => {
       setMoviesDetails(response.data.results);
     });
-  });
+  }, []);
 
   return (
     <>
