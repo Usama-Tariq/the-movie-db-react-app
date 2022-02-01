@@ -12,8 +12,8 @@ function Routing() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="movie-detail/:movieId" element={<MovieDetail />} />
         <Route path="genre-list" element={<GenreList />} />
+        <Route path="movie-detail/:movieId" element={<MovieDetail />} />
         <Route path="search/:query" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

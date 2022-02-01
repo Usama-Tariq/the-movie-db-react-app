@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { getMoviesTopRated } from "../../../api";
+import { getTopRatedMovies } from "../../../api";
 import MovieCard from "./MovieCard";
 
 import "../styles/movies.css";
@@ -9,7 +9,7 @@ function TopRatedMovies() {
   const [topRatedMovies, setTopRatedMovies] = useState<any[]>([]);
 
   useEffect(() => {
-    getMoviesTopRated.then((response) => {
+    getTopRatedMovies.then((response) => {
       setTopRatedMovies(response.data.results);
     });
   }, []);

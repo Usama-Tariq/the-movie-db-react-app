@@ -4,32 +4,32 @@ const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 const TopRatedMoviesUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US`;
 const GenreListUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
 
-const setSearchMoviesUrl = (search_query: string) => {
-  return `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${search_query}`;
+const updateSearchResultsUrl = (searchQuery: string) => {
+  return `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}`;
 };
 
-const setGenreBaseURL = (genreID: number) => {
+const updateGenresUrl = (genreID: number) => {
   return `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreID}`;
 };
 
-const setMovieBaseURL = (movieID: number) => {
+const updateMoviesUrl = (movieID: number) => {
   return `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}&language=en-US`;
 };
 
-export const getMoviesTopRated = axios.get(TopRatedMoviesUrl);
+export const getTopRatedMovies = axios.get(TopRatedMoviesUrl);
 
 export const getGenresList = axios.get(GenreListUrl);
 
 export const getMovieDetails = (movieID: number) => {
-  return axios.get(setMovieBaseURL(movieID));
+  return axios.get(updateMoviesUrl(movieID));
 };
 
-export const getGenreById = (genreID: number) => {
-  return axios.get(setGenreBaseURL(genreID));
+export const getGenreDetails = (genreID: number) => {
+  return axios.get(updateGenresUrl(genreID));
 };
 
-export const getSearchMovies = (search_query: string) => {
-  return axios.get(setSearchMoviesUrl(search_query));
+export const getSearchResults = (searchQuery: string) => {
+  return axios.get(updateSearchResultsUrl(searchQuery));
 };
 
 export const getImage = (image_path: string) => {

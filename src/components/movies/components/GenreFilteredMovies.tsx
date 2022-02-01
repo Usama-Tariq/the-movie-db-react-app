@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getGenreById } from "../../../api";
+import { getGenreDetails } from "../../../api";
 import MovieCard from "./MovieCard";
 import "../styles/movies.css";
 
 function GenreFilteredMovies(props: any) {
   const { id, name } = props.genreDetails;
 
-  const [MoviesDetails, setMoviesDetails] = useState<any[]>([]);
+  const [MovieDetails, setMovieDetails] = useState<any[]>([]);
 
   useEffect(() => {
-    getGenreById(id).then((response) => {
-      setMoviesDetails(response.data.results);
+    getGenreDetails(id).then((response) => {
+      setMovieDetails(response.data.results);
     });
   }, []);
 
@@ -18,7 +18,7 @@ function GenreFilteredMovies(props: any) {
     <>
       <h4>{name}</h4>
       <div className="flex-container">
-        {MoviesDetails.map((movie) => (
+        {MovieDetails.map((movie) => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>

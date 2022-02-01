@@ -13,8 +13,6 @@ function SearchBar() {
     },
   });
 
-  // console.log("Formik Value", formik.values);
-
   return (
     <>
       <div className="search-container">
@@ -28,9 +26,6 @@ function SearchBar() {
             onChange={formik.handleChange}
             value={formik.values.search}
           />
-          {/* <button type="submit" onClick={() => navigate("../search/${}")}>
-            Search
-          </button> */}
           <button type="submit">Search</button>
         </form>
       </div>
