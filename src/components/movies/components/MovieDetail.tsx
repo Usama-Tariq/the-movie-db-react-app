@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getMovieDetails, getImageLarge } from "../../../api/index";
 import Comment from "./features/Comment";
 import Like from "./features/Like";
-import { updatedMovie } from "../../utils";
+import { updateMovie } from "../../utils";
 
 import "../styles/movies.css";
 
@@ -54,7 +54,7 @@ function MovieDetail() {
   useEffect(() => {
     const id: number = parseInt(movieId!);
     getMovieDetails(id).then((response) => {
-      setMovieDetail(updatedMovie(response.data));
+      setMovieDetail(updateMovie(response.data));
     });
   }, []);
 

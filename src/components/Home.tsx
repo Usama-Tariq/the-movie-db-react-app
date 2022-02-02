@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import GenreList from "./movies/components/GenreList";
 import { getTopRatedMovies, getGenresList } from "../api/index";
 import TopRatedMovies from "./movies/components/TopRatedMovies";
-import { updatedMovies } from "./utils/index";
+import { updateMoviesList } from "./utils/index";
 
 interface movieDetails {
   adult: boolean;
@@ -34,7 +34,7 @@ function Home() {
 
   useEffect(() => {
     getTopRatedMovies.then((response) => {
-      setTopRatedMovies(updatedMovies(response.data.results));
+      setTopRatedMovies(updateMoviesList(response.data.results));
     });
   }, []);
 

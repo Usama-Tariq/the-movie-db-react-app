@@ -6,27 +6,6 @@ import Like from "./features/Like";
 
 import "../styles/movies.css";
 
-interface props {
-  movieDetails: {
-    adult: boolean;
-    backdrop_path: string;
-    comments: [];
-    genre_ids: [];
-    id: number;
-    isLiked: boolean;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-  };
-}
-
 interface movieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -44,6 +23,10 @@ interface movieDetails {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+interface props {
+  movieDetails: movieDetails;
 }
 
 function MovieCard(props: props) {

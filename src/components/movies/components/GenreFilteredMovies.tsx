@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getGenreDetails } from "../../../api/index";
 import MovieCard from "./MovieCard";
-import { updatedMovies } from "../../utils/index";
+import { updateMoviesList } from "../../utils/index";
 import "../styles/movies.css";
 
 interface props {
@@ -34,7 +34,7 @@ function GenreFilteredMovies(props: props) {
 
   useEffect(() => {
     getGenreDetails(id).then((response) => {
-      setGenreMovies(updatedMovies(response.data.results));
+      setGenreMovies(updateMoviesList(response.data.results));
     });
   }, []);
 

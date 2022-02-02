@@ -1,4 +1,4 @@
-interface movieDetails {
+interface moviesListInterface {
   adult: boolean;
   backdrop_path: string;
   comments: [];
@@ -17,7 +17,7 @@ interface movieDetails {
   vote_count: number;
 }
 
-interface movieDetail {
+interface movieDetailInterface {
   poster_path: string;
   original_title: string;
   overview: string;
@@ -32,8 +32,8 @@ interface movieDetail {
   comments: [];
 }
 
-export const updatedMovies = (movies: movieDetails[]) => {
-  movies.map((movie: movieDetails) => {
+export const updateMoviesList = (movies: moviesListInterface[]) => {
+  movies.map((movie: moviesListInterface) => {
     movie.isLiked = false;
     movie.comments = [];
     return movie;
@@ -42,7 +42,7 @@ export const updatedMovies = (movies: movieDetails[]) => {
   return movies;
 };
 
-export const updatedMovie = (movie: movieDetail) => {
+export const updateMovie = (movie: movieDetailInterface) => {
   movie.isLiked = false;
   movie.comments = [];
   return movie;
