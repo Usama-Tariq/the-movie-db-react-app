@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import GenreFilteredMovies from "./GenreFilteredMovies";
-import { getGenresList } from "../../../api";
 
 import "../styles/movies.css";
 
-function GenreList() {
-  const [genreList, setGenreList] = useState<any[]>([]);
-
-  useEffect(() => {
-    getGenresList.then((response) => {
-      setGenreList(response.data.genres);
-    });
-  }, []);
+function GenreList(props: any) {
+  const { genreList } = props;
 
   return (
     <>
-      <ul>
-        {genreList.map((genre) => (
+      <div>
+        {genreList.map((genre: any) => (
           <GenreFilteredMovies key={genre.id} genreDetails={genre} />
         ))}
-      </ul>
+      </div>
     </>
   );
 }

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { getSearchResults } from "../api";
-import MovieCard from "./movies/components/MovieCard";
+import { getSearchResults } from "../../../api";
+import MovieCard from "./MovieCard";
 
-function Search() {
-  const { query } = useParams();
+function SearchResultsPage() {
+  const { query } = useParams<string>();
   const [searchResults, setsearchResults] = useState([]);
 
   useEffect(() => {
-    //@ts-ignore
-    getSearchResults(query).then((response) => {
-      console.log(query, response);
+    getSearchResults(query!).then((response) => {
       setsearchResults(response.data.results);
     });
   }, [query]);
@@ -27,4 +25,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchResultsPage;
