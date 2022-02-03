@@ -32,6 +32,18 @@ interface movieDetailInterface {
   comments: [];
 }
 
+export interface signupInterface {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface loginInterface {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export const updateMoviesList = (movies: moviesListInterface[]) => {
   movies.map((movie: moviesListInterface) => {
     movie.isLiked = false;
@@ -46,4 +58,14 @@ export const updateMovie = (movie: movieDetailInterface) => {
   movie.isLiked = false;
   movie.comments = [];
   return movie;
+};
+
+export const onLogInLogOut = () => {
+  let isLogin = JSON.parse(localStorage.getItem("isLogin")!);
+  isLogin = !isLogin;
+  localStorage.setItem("isLogin", JSON.stringify(isLogin));
+};
+
+export const isLoggedIn = () => {
+  return JSON.parse(localStorage.getItem("isLogin")!);
 };

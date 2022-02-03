@@ -87,6 +87,8 @@ ul ul {
 }
 
 input[type="text"],
+input[type="email"],
+input[type="password"],
 select,
 textarea {
   width: 100%;
@@ -115,7 +117,7 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
-button[type="submit"] {
+button {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -125,6 +127,6 @@ button[type="submit"] {
   float: right;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #45a049;
 }
