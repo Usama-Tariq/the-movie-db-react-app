@@ -3,8 +3,6 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-import "../styles/movies.css";
-
 let validationSchema = yup.object().shape({
   search: yup.string().required("Required").min(4, "Atleast 4 character long"),
 });
