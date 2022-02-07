@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { signupInterface, onLogInLogOut } from "./utils";
+import { usersInterface, toggleLoginLogout } from "./utils";
 import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
@@ -24,42 +24,42 @@ function SignupForm() {
   });
 
   const onSubmit = (values: any) => {
-    let usersStorage = JSON.parse(localStorage.getItem("users")!);
+    let users = JSON.parse(localStorage.getItem("users")!);
     let alertMessage: string = `User "${values.email}" already registered`;
-    let ifNotFound = false;
+    let isUserFound = false;
 
-    if (usersStorage === null) {
-      let users: signupInterface[] = [];
+    if (users === null) {
+      let existingUsers: usersInterface[] = [];
       const user = {
         name: values.name,
         email: values.email,
         password: values.password,
       };
-      users.push(user);
-      localStorage.setItem("users", JSON.stringify(users));
-      onLogInLogOut();
+      existingUsers.push(user);
+      localStorage.setItem("users", JSON.stringify(existingUsers));
+      toggleLoginLogout();
       navigate(`../`);
     } else {
-      let users: signupInterface[] = usersStorage;
+      let existingUsers: usersInterface[] = users;
 
-      users.forEach((user) => {
+      existingUsers.forEach((user) => {
         if (user.email === values.email) {
-          ifNotFound = true;
+          isUserFound = true;
         } else {
           const user = {
             name: values.name,
             email: values.email,
             password: values.password,
           };
-          users.push(user);
-          localStorage.setItem("users", JSON.stringify(users));
-          onLogInLogOut();
+          existingUsers.push(user);
+          localStorage.setItem("users", JSON.stringify(existingUsers));
+          toggleLoginLogout();
           navigate(`../`);
         }
       });
     }
 
-    if (ifNotFound) {
+    if (isUserFound) {
       alert(alertMessage);
       navigate("../login");
     }

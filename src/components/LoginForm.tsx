@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { loginInterface, onLogInLogOut } from "./utils";
+import { usersInterface, toggleLoginLogout } from "./utils";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
@@ -22,31 +22,32 @@ function LoginForm() {
   });
 
   const onSubmit = (values: any) => {
-    let usersStorage = JSON.parse(localStorage.getItem("users")!);
+    let users = JSON.parse(localStorage.getItem("users")!);
     let alertMessage: string = `User "${values.email}" not found`;
-    let ifNotFound = false;
-    if (usersStorage === null) {
+    let isUserFound = false;
+
+    if (users === null) {
       alert("No User Exist");
       navigate("../signup");
     } else {
-      let users: loginInterface[] = usersStorage;
-      users.forEach((user) => {
+      let existingUsers: usersInterface[] = users;
+      existingUsers.forEach((user) => {
         if (user.email === values.email) {
           if (user.password === values.password) {
-            onLogInLogOut();
-            ifNotFound = false;
+            toggleLoginLogout();
+            isUserFound = false;
             navigate(`../`);
           } else {
-            ifNotFound = true;
+            isUserFound = true;
             alertMessage = `Wrong Password`;
           }
         } else {
-          ifNotFound = true;
+          isUserFound = true;
         }
       });
     }
 
-    if (ifNotFound) {
+    if (isUserFound) {
       alert(alertMessage);
       navigate("../signup");
     }

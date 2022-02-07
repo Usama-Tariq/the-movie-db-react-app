@@ -32,13 +32,7 @@ interface movieDetailInterface {
   comments: [];
 }
 
-export interface signupInterface {
-  name: string;
-  email: string;
-  password: string;
-}
-
-export interface loginInterface {
+export interface usersInterface {
   name: string;
   email: string;
   password: string;
@@ -60,7 +54,7 @@ export const updateMovie = (movie: movieDetailInterface) => {
   return movie;
 };
 
-export const onLogInLogOut = () => {
+export const toggleLoginLogout = () => {
   let isLogin = JSON.parse(localStorage.getItem("isLogin")!);
   isLogin = !isLogin;
   localStorage.setItem("isLogin", JSON.stringify(isLogin));
