@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
 
 import { getMovieDetails, getImageLarge } from "../../../api/index";
 import Comment from "./features/Comment";
 import Like from "./features/Like";
 import { updateMovie } from "../../utils";
+import { setMovieDetailAction } from "../../../redux/actions";
 
 import "../styles/movies.css";
 
@@ -23,38 +25,23 @@ interface movieDetails {
   comments: commentsObject[];
 }
 
-const movieDetailsInitialState = {
-  poster_path: "",
-  original_title: "",
-  overview: "",
-  popularity: 0,
-  release_date: "",
-  revenue: 0,
-  runtime: 0,
-  tagline: "",
-  vote_count: 0,
-  vote_average: 0,
-  isLiked: false,
-  comments: [],
-};
-
 interface commentsObject {
   name: string;
   comment: string;
 }
 
-function MovieDetail() {
+function MovieDetail({ movieDetailReducer }: any) {
+  const dispatch = useDispatch();
+  const movieDetail = movieDetailReducer;
+
   const { movieId } = useParams<string>();
-  const [movieDetail, setMovieDetail] = useState<movieDetails>(
-    movieDetailsInitialState
-  );
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState<commentsObject[]>([]);
 
   useEffect(() => {
     const id: number = parseInt(movieId!);
     getMovieDetails(id).then((response) => {
-      setMovieDetail(updateMovie(response.data));
+      dispatch(setMovieDetailAction(updateMovie(response.data)));
     });
   }, []);
 
@@ -152,4 +139,10 @@ function MovieDetail() {
   );
 }
 
-export default MovieDetail;
+const mapStateToProps = (state: any) => {
+  return {
+    movieDetailReducer: state.movieDetailReducer,
+  };
+};
+
+export default connect(mapStateToProps)(MovieDetail);

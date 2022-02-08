@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import GenreFilteredMovies from "./GenreFilteredMovies";
 
 import "../styles/movies.css";
 
-function GenreList(props: any) {
-  const { genreList } = props;
+function GenreList({ genreListReducer }: any) {
+  const genreList = genreListReducer;
 
   return (
     <>
@@ -18,4 +19,10 @@ function GenreList(props: any) {
   );
 }
 
-export default GenreList;
+const mapStateToProps = (state: any) => {
+  return {
+    genreListReducer: state.genreListReducer,
+  };
+};
+
+export default connect(mapStateToProps)(GenreList);

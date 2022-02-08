@@ -1,40 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+
 import { getGenreDetails } from "../../../api/index";
 import MovieCard from "./MovieCard";
 import { updateMoviesList } from "../../utils/index";
+import { setGenreMoviesAction } from "../../../redux/actions";
+
 import "../styles/movies.css";
 
-interface props {
-  genreDetails: { id: number; name: string };
-}
+function GenreFilteredMovies(props: any) {
+  const dispatch = useDispatch();
 
-interface movieDetails {
-  adult: boolean;
-  backdrop_path: string;
-  comments: [];
-  genre_ids: [];
-  id: number;
-  isLiked: boolean;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
-
-function GenreFilteredMovies(props: props) {
   const { id, name } = props.genreDetails;
-
-  const [genreMovies, setGenreMovies] = useState<movieDetails[]>([]);
+  const genreMovies = props.genreMoviesReducer;
 
   useEffect(() => {
     getGenreDetails(id).then((response) => {
-      setGenreMovies(updateMoviesList(response.data.results));
+      dispatch(setGenreMoviesAction(updateMoviesList(response.data.results)));
     });
   }, []);
 
@@ -42,7 +24,7 @@ function GenreFilteredMovies(props: props) {
     <>
       <h4>{name}</h4>
       <div className="flex-container">
-        {genreMovies.map((movie) => (
+        {genreMovies.map((movie: any) => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>
@@ -50,4 +32,10 @@ function GenreFilteredMovies(props: props) {
   );
 }
 
-export default GenreFilteredMovies;
+const mapStateToProps = (state: any) => {
+  return {
+    genreMoviesReducer: state.genreMoviesReducer,
+  };
+};
+
+export default connect(mapStateToProps)(GenreFilteredMovies);

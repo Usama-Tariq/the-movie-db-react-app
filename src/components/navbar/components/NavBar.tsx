@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../../movies/components/SearchBar";
 import { useNavigate } from "react-router-dom";
-import { onLogInLogOut, isLoggedIn } from "../../utils";
+import { toggleLoginLogout, isLoggedIn } from "../../utils";
 
 import "../styles/navbar.css";
 import "../../movies/styles/movies.css";
@@ -17,7 +17,7 @@ function NavBar() {
     navigate("../signup");
   };
   const handleLogout = () => {
-    onLogInLogOut();
+    toggleLoginLogout();
     navigate("../login");
   };
 

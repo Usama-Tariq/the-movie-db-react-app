@@ -1,0 +1,13 @@
+export const SET_TOP_RATED_MOVIES = "SET_TOP_RATED_MOVIES";
+
+export const SET_GENRES_LIST = "SET_GENRES_LIST";
+
+export const SET_GENRE_MOVIES = "SET_GENRE_MOVIES";
+
+export const SET_MOVIE_DETAIL = "SET_MOVIE_DETAIL";
+
+export const SET_MOVIE_SEARCH_RESULTS = "SET_MOVIE_SEARCH_RESULTS";
+
+export const SET_LIKE = "SET_LIKE";
+
+export const SET_COMMENT = "SET_COMMENT";
