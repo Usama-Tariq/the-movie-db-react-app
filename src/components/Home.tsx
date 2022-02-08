@@ -3,51 +3,30 @@ import GenreList from "./movies/components/GenreList";
 import { getTopRatedMovies, getGenresList } from "../api/index";
 import TopRatedMovies from "./movies/components/TopRatedMovies";
 import { updateMoviesList } from "./utils/index";
-
-interface movieDetails {
-  adult: boolean;
-  backdrop_path: string;
-  comments: [];
-  genre_ids: [];
-  id: number;
-  isLiked: boolean;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
-
-interface genreList {
-  id: number;
-  name: string;
-}
+import { useDispatch } from "react-redux";
+import { setTopRatedMoviesAction, setGenreListAction } from "../redux/actions";
 
 function Home() {
-  const [topRatedMovies, setTopRatedMovies] = useState<movieDetails[]>([]);
-  const [genreList, setGenreList] = useState<genreList[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getTopRatedMovies.then((response) => {
-      setTopRatedMovies(updateMoviesList(response.data.results));
+      dispatch(
+        setTopRatedMoviesAction(updateMoviesList(response.data.results))
+      );
     });
   }, []);
 
   useEffect(() => {
     getGenresList.then((response) => {
-      setGenreList(response.data.genres);
+      dispatch(setGenreListAction(response.data.genres));
     });
   }, []);
 
   return (
     <>
-      <TopRatedMovies topRatedMovies={topRatedMovies} />
-      <GenreList genreList={genreList} />
+      <TopRatedMovies />
+      <GenreList />
     </>
   );
 }
