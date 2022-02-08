@@ -1,16 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import MovieCard from "./MovieCard";
 
 import "../styles/movies.css";
 
-function TopRatedMovies(props: any) {
-  const { topRatedMovies } = props;
+function TopRatedMovies({ topRatedMoviesReducer }: any) {
+  const topRatedMovies = topRatedMoviesReducer;
 
   return (
     <>
       <div className="flex-container">
-        {topRatedMovies.map((movie: any) => (
+        {topRatedMovies?.map((movie: any) => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </div>
@@ -18,4 +19,10 @@ function TopRatedMovies(props: any) {
   );
 }
 
-export default TopRatedMovies;
+const mapStateToProps = (state: any) => {
+  return {
+    topRatedMoviesReducer: state.topRatedMoviesReducer,
+  };
+};
+
+export default connect(mapStateToProps)(TopRatedMovies);
