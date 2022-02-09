@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getMovieDetails, getImageLarge } from "../../../api/index";
 import Comment from "./features/Comment";
 import Like from "./features/Like";
 import { updateMovie } from "../../utils";
-import { setMovieDetailAction } from "../../../redux/actions";
+import { setMovieDetail } from "../../../redux/reducers/moviesReducer";
 
 import "../styles/movies.css";
 
@@ -30,18 +30,23 @@ interface commentsObject {
   comment: string;
 }
 
-function MovieDetail({ movieDetailReducer }: any) {
+function MovieDetail() {
   const dispatch = useDispatch();
-  const movieDetail = movieDetailReducer;
+  const { movieDetail } = useSelector(
+    (state) =>
+      //@ts-ignore
+      state.reducer
+  );
 
   const { movieId } = useParams<string>();
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState<commentsObject[]>([]);
 
   useEffect(() => {
+    // @ts-ignore
     const id: number = parseInt(movieId!);
-    getMovieDetails(id).then((response) => {
-      dispatch(setMovieDetailAction(updateMovie(response.data)));
+    getMovieDetails(id).then((response: any) => {
+      dispatch(setMovieDetail(updateMovie(response.data)));
     });
   }, []);
 
@@ -139,10 +144,4 @@ function MovieDetail({ movieDetailReducer }: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    movieDetailReducer: state.movieDetailReducer,
-  };
-};
-
-export default connect(mapStateToProps)(MovieDetail);
+export default MovieDetail;

@@ -1,19 +1,9 @@
 import { combineReducers } from "redux";
 
-import {
-  topRatedMoviesReducer,
-  genreListReducer,
-  genreMoviesReducer,
-  movieDetailReducer,
-  searchResultsReducer,
-} from "./moviesReducer";
+import reducer from "./moviesReducer";
 
 const rootReducer = combineReducers({
-  topRatedMoviesReducer,
-  genreListReducer,
-  genreMoviesReducer,
-  movieDetailReducer,
-  searchResultsReducer,
+  reducer,
 });
 
 export default rootReducer;

@@ -1,3 +1,5 @@
+import { createAction } from "@reduxjs/toolkit";
+
 import {
   SET_GENRES_LIST,
   SET_GENRE_MOVIES,
@@ -6,37 +8,41 @@ import {
   SET_TOP_RATED_MOVIES,
 } from "../constants";
 
-export const setTopRatedMoviesAction = (movies: any[]) => {
-  return {
-    type: SET_TOP_RATED_MOVIES,
-    payload: movies,
-  };
-};
+export const setTopRatedMovies = createAction(
+  SET_TOP_RATED_MOVIES,
+  (movies: any) => {
+    return {
+      payload: movies,
+    };
+  }
+);
 
-export const setGenreListAction = (genres: any[]) => {
+export const setGenreList = createAction(SET_GENRES_LIST, (genres: any) => {
   return {
-    type: SET_GENRES_LIST,
     payload: genres,
   };
-};
+});
 
-export const setGenreMoviesAction = (movies: any[]) => {
-  return {
-    type: SET_GENRE_MOVIES,
-    payload: movies,
-  };
-};
+export const setGenreMovies = createAction(
+  SET_GENRE_MOVIES,
+  (genreMovies: any) => {
+    return {
+      payload: genreMovies,
+    };
+  }
+);
 
-export const setMovieDetailAction = (movie: any) => {
+export const setMovieDetail = createAction(SET_MOVIE_DETAIL, (movie: any) => {
   return {
-    type: SET_MOVIE_DETAIL,
     payload: movie,
   };
-};
+});
 
-export const setSearchResultsAction = (movie: any) => {
-  return {
-    type: SET_MOVIE_SEARCH_RESULTS,
-    payload: movie,
-  };
-};
+export const setSearchResults = createAction(
+  SET_MOVIE_SEARCH_RESULTS,
+  (movies: any) => {
+    return {
+      payload: movies,
+    };
+  }
+);

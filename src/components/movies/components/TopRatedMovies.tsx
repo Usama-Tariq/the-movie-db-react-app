@@ -1,12 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import MovieCard from "./MovieCard";
 
 import "../styles/movies.css";
 
-function TopRatedMovies({ topRatedMoviesReducer }: any) {
-  const topRatedMovies = topRatedMoviesReducer;
+function TopRatedMovies() {
+  const { topRatedMovies } = useSelector(
+    (state) =>
+      //@ts-ignore
+      state.reducer
+  );
 
   return (
     <>
@@ -19,10 +23,4 @@ function TopRatedMovies({ topRatedMoviesReducer }: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    topRatedMoviesReducer: state.topRatedMoviesReducer,
-  };
-};
-
-export default connect(mapStateToProps)(TopRatedMovies);
+export default TopRatedMovies;
