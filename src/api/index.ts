@@ -16,19 +16,19 @@ const updateMoviesUrl = (movieID: number) => {
   return `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}&language=en-US`;
 };
 
-export const getTopRatedMovies = axios.get(TopRatedMoviesUrl);
+export const topRatedMovies = axios.get(TopRatedMoviesUrl);
 
-export const getGenresList = axios.get(GenreListUrl);
+export const genresList = axios.get(GenreListUrl);
 
-export const getMovieDetails = (movieID: number) => {
+export const movieDetails = (movieID: number) => {
   return axios.get(updateMoviesUrl(movieID));
 };
 
-export const getGenreDetails = (genreID: number) => {
+export const genreDetails = (genreID: number) => {
   return axios.get(updateGenresUrl(genreID));
 };
 
-export const getSearchResults = (searchQuery: string) => {
+export const searchResults = (searchQuery: string) => {
   return axios.get(updateSearchResultsUrl(searchQuery));
 };
 
