@@ -15,7 +15,7 @@ function GenreFilteredMovies(props: any) {
   const { genreMovies } = useSelector(
     (state) =>
       //@ts-ignore
-      state.reducer
+      state.root
   );
 
   useEffect(() => {

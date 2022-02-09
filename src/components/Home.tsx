@@ -17,9 +17,6 @@ function Home() {
     getTopRatedMovies.then((response: any) => {
       dispatch(setTopRatedMovies(updateMoviesList(response.data.results)));
     });
-  }, []);
-
-  useEffect(() => {
     getGenresList.then((response: any) => {
       dispatch(setGenreList(response.data.genres));
     });

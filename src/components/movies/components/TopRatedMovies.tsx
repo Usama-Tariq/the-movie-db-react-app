@@ -9,7 +9,7 @@ function TopRatedMovies() {
   const { topRatedMovies } = useSelector(
     (state) =>
       //@ts-ignore
-      state.reducer
+      state.root
   );
 
   return (

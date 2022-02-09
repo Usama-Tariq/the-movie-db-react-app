@@ -35,7 +35,7 @@ function MovieDetail() {
   const { movieDetail } = useSelector(
     (state) =>
       //@ts-ignore
-      state.reducer
+      state.root
   );
 
   const { movieId } = useParams<string>();

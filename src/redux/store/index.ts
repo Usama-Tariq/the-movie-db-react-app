@@ -3,10 +3,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import thunk from "redux-thunk";
 
-import reducer from "../reducers/index";
+import root from "../reducers/moviesReducer";
 
 export const store = configureStore({
-  reducer,
+  reducer: { root },
   applyMiddleware: [thunk],
 });
 

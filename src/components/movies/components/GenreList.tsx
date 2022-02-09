@@ -9,7 +9,7 @@ function GenreList() {
   const { genreList } = useSelector(
     (state) =>
       //@ts-ignore
-      state.reducer
+      state.root
   );
 
   return (

@@ -11,7 +11,7 @@ function SearchResultsPage() {
   const { searchResults } = useSelector(
     (state) =>
       //@ts-ignore
-      state.reducer
+      state.root
   );
 
   const { query } = useParams<string>();
