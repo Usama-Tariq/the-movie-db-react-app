@@ -1,59 +1,49 @@
-import {
-  SET_GENRES_LIST,
-  SET_GENRE_MOVIES,
-  SET_MOVIE_DETAIL,
-  SET_MOVIE_SEARCH_RESULTS,
-  SET_TOP_RATED_MOVIES,
-} from "../constants";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: any[] = [];
+interface initialStateType {
+  topRatedMovies: [];
+  genreList: [];
+  genreMovies: [];
+  movieDetail: [];
+  searchResults: [];
+}
 
-export const topRatedMoviesReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_TOP_RATED_MOVIES:
-      return action.payload;
-
-    default:
-      return state;
-  }
+const initialState: initialStateType = {
+  topRatedMovies: [],
+  genreList: [],
+  genreMovies: [],
+  movieDetail: [],
+  searchResults: [],
 };
 
-export const genreListReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_GENRES_LIST:
-      return action.payload;
+const movies = createSlice({
+  name: "movies",
+  initialState,
+  reducers: {
+    setTopRatedMovies(state, { payload }: PayloadAction<any>) {
+      state.topRatedMovies = payload;
+    },
+    setGenreList(state, { payload }: PayloadAction<any>) {
+      state.genreList = payload;
+    },
+    setGenreMovies(state, { payload }: PayloadAction<any>) {
+      state.genreMovies = payload;
+    },
+    setMovieDetail(state, { payload }: PayloadAction<any>) {
+      state.movieDetail = payload;
+    },
+    setSearchResults(state, { payload }: PayloadAction<any>) {
+      state.searchResults = payload;
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const {
+  setTopRatedMovies,
+  setGenreList,
+  setGenreMovies,
+  setMovieDetail,
+  setSearchResults,
+} = movies.actions;
 
-export const genreMoviesReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_GENRE_MOVIES:
-      return action.payload;
-
-    default:
-      return state;
-  }
-};
-
-export const movieDetailReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_MOVIE_DETAIL:
-      return action.payload;
-
-    default:
-      return state;
-  }
-};
-
-export const searchResultsReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_MOVIE_SEARCH_RESULTS:
-      return action.payload;
-
-    default:
-      return state;
-  }
-};
+export default movies.reducer;

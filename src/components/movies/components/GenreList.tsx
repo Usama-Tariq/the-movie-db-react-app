@@ -1,12 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import GenreFilteredMovies from "./GenreFilteredMovies";
 
 import "../styles/movies.css";
 
-function GenreList({ genreListReducer }: any) {
-  const genreList = genreListReducer;
+function GenreList() {
+  const { genreList } = useSelector(
+    (state) =>
+      //@ts-ignore
+      state.root
+  );
 
   return (
     <>
@@ -19,10 +23,4 @@ function GenreList({ genreListReducer }: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    genreListReducer: state.genreListReducer,
-  };
-};
-
-export default connect(mapStateToProps)(GenreList);
+export default GenreList;

@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getSearchResults } from "../../../api";
 import MovieCard from "./MovieCard";
-import { setSearchResultsAction } from "../../../redux/actions";
+import { setSearchResults } from "../../../redux/reducers/moviesReducer";
 
-function SearchResultsPage({ searchResultsReducer }: any) {
+function SearchResultsPage() {
   const dispatch = useDispatch();
-  const searchResults = searchResultsReducer;
+  const { searchResults } = useSelector(
+    (state) =>
+      //@ts-ignore
+      state.root
+  );
 
   const { query } = useParams<string>();
 
   useEffect(() => {
-    getSearchResults(query!).then((response) => {
-      dispatch(setSearchResultsAction(response.data.results));
+    getSearchResults(query!).then((response: any) => {
+      dispatch(setSearchResults(response.data.results));
     });
   }, [query]);
 
@@ -29,10 +33,4 @@ function SearchResultsPage({ searchResultsReducer }: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    searchResultsReducer: state.searchResultsReducer,
-  };
-};
-
-export default connect(mapStateToProps)(SearchResultsPage);
+export default SearchResultsPage;
