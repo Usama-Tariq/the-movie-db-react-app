@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 
-import { getGenreDetails } from "../../../api/index";
 import MovieCard from "./MovieCard";
-import { updateMoviesList } from "../../utils/index";
-import { setGenreMovies } from "../../../redux/reducers/moviesReducer";
+import { getGenreMovies } from "../../../redux/reducers/moviesReducer";
 
 import "../styles/movies.css";
 
@@ -19,10 +17,8 @@ function GenreFilteredMovies(props: any) {
   );
 
   useEffect(() => {
-    getGenreDetails(id).then((response: any) => {
-      dispatch(setGenreMovies(updateMoviesList(response.data.results)));
-    });
-  }, []);
+    dispatch(getGenreMovies(id));
+  }, [id]);
 
   return (
     <>

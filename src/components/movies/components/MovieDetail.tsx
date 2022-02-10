@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getMovieDetails, getImageLarge } from "../../../api/index";
+import { getImageLarge } from "../../../api/index";
 import Comment from "./features/Comment";
 import Like from "./features/Like";
-import { updateMovie } from "../../utils";
-import { setMovieDetail } from "../../../redux/reducers/moviesReducer";
+import { getMovieDetail } from "../../../redux/reducers/moviesReducer";
 
 import "../styles/movies.css";
 
@@ -45,9 +44,7 @@ function MovieDetail() {
   useEffect(() => {
     // @ts-ignore
     const id: number = parseInt(movieId!);
-    getMovieDetails(id).then((response: any) => {
-      dispatch(setMovieDetail(updateMovie(response.data)));
-    });
+    dispatch(getMovieDetail(id));
   }, []);
 
   const handleLike = (movie: movieDetails) => {
