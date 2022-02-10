@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import GenreList from "./movies/components/GenreList";
-// import { getTopRatedMovies, getGenresList } from "../api/index";
 import {
   getTopRatedMovies,
   getGenreList,

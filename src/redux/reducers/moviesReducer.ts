@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { updateMovie, updateMoviesList } from "../../components/utils";
 import {
-  topRatedMovies,
-  genresList,
-  genreDetails,
-  movieDetails,
-  searchResults,
+  fetchTopRatedMovies,
+  fetchGenresList,
+  fetchGenreDetails,
+  fetchMovieDetails,
+  fetchSearchResults,
 } from "../../api/index";
 
 interface initialStateType {
@@ -27,7 +27,7 @@ const initialState: initialStateType = {
 export const getTopRatedMovies = createAsyncThunk(
   "getTopRatedMovies",
   (params, { dispatch }) => {
-    topRatedMovies.then((response: any) => {
+    fetchTopRatedMovies.then((response: any) => {
       dispatch(setTopRatedMovies(updateMoviesList(response.data.results)));
     });
   }
@@ -36,7 +36,7 @@ export const getTopRatedMovies = createAsyncThunk(
 export const getGenreList = createAsyncThunk(
   "getGenresList",
   (params, { dispatch }) => {
-    genresList.then((response: any) => {
+    fetchGenresList.then((response: any) => {
       dispatch(setGenreList(updateMoviesList(response.data.genres)));
     });
   }
@@ -45,7 +45,7 @@ export const getGenreList = createAsyncThunk(
 export const getGenreMovies = createAsyncThunk(
   "getGenreMovies",
   (params: number, { dispatch }) => {
-    genreDetails(params).then((response: any) => {
+    fetchGenreDetails(params).then((response: any) => {
       dispatch(setGenreMovies(updateMoviesList(response.data.results)));
     });
   }
@@ -54,7 +54,7 @@ export const getGenreMovies = createAsyncThunk(
 export const getMovieDetail = createAsyncThunk(
   "getMovieDetail",
   (params: number, { dispatch }) => {
-    movieDetails(params).then((response: any) => {
+    fetchMovieDetails(params).then((response: any) => {
       dispatch(setMovieDetail(updateMovie(response.data)));
     });
   }
@@ -63,7 +63,7 @@ export const getMovieDetail = createAsyncThunk(
 export const getSearchResults = createAsyncThunk(
   "getSearchResults",
   (params: string, { dispatch }) => {
-    searchResults(params).then((response: any) => {
+    fetchSearchResults(params).then((response: any) => {
       dispatch(setSearchResults(response.data.results));
     });
   }

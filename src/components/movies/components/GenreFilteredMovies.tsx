@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 
-import { genreDetails } from "../../../api/index";
 import MovieCard from "./MovieCard";
-import { updateMoviesList } from "../../utils/index";
 import { getGenreMovies } from "../../../redux/reducers/moviesReducer";
 
 import "../styles/movies.css";
